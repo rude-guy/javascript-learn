@@ -1,0 +1,11 @@
+<script>
+  Function.prototype.apply1 = function (context, args) {
+    // 将基础类型包装为对象
+    context = context ? Object(context) : window;
+    //
+    context.fn = this;
+    const ret = context.fn(...args);
+    delete context.fn;
+    return ret;
+  };
+</script>

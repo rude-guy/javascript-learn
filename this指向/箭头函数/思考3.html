@@ -1,0 +1,14 @@
+<script>
+  var obj = {
+    say: (function () {
+      function _say() {
+        // this为undefined所有指向window
+        console.log(this);
+      }
+      // 立即执行函数，obj还未被初始化
+      console.log(obj); // undefined
+      return _say.bind(obj);
+    })(),
+  };
+  obj.say();
+</script>

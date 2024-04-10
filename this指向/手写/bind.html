@@ -1,0 +1,17 @@
+<script>
+  Function.prototype.bind1 = function (context) {
+    const _self = this;
+    const args = Array.from(arguments).slice(1);
+    const fNop = function () {};
+    const fBound = function () {
+      // 后续传入的参数
+      const bindArgs = Array.from(arguments);
+      // 判断当前的this
+      return _self.apply(this instanceof fNop ? this : context, args.concat(bindArgs));
+    };
+    // 反正fBound的原型被修改
+    fNop.prototype = this.prototype;
+    fBound.prototype = new fBound();
+    return fBound;
+  };
+</script>

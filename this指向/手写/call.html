@@ -1,0 +1,14 @@
+<script>
+  Function.prototype.call1 = function (context) {
+    // 将基础类型转化为对象 1 -> Number
+    context = context ? Object(context) : window;
+    context.fn = this;
+    // 获取后面的参数
+    const args = Array.from(arguments).slice(1);
+    // 执行函数
+    const ret = context.fn(...args);
+    delete context.fn;
+    // 返回
+    return ret;
+  };
+</script>

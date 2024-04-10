@@ -1,0 +1,17 @@
+<script>
+  function foo(a) {
+    this.a = a;
+  }
+
+  var bar = new foo(2); // bar和foo(..)调用中的this进行绑定
+  console.log(bar.a); // 2
+
+  // 手写一个new
+  function create(fn) {
+    const obj = Object.create(null);
+    obj.__proto__ = fn.prototype;
+    const Con = [].slice.call(arguments);
+    const ret = fn.call(obj, Con);
+    return ret instanceof Object ? ret : obj;
+  }
+</script>
