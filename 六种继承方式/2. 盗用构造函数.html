@@ -1,0 +1,22 @@
+<script>
+  function SuperType(name) {
+    this.name = name; // 只能在构造函数内定义方法
+  }
+  SuperType.prototype.getSuperValue = function () {
+    // 子类不能访问该方法
+    return this.property;
+  };
+  function Subtype() {
+    SuperType.call(this, 'xiaoming');
+    this.age = 29;
+  }
+
+  let instance = new Subtype();
+  console.log(instance); // Subtype {name: 'xiaoming', age: 29}
+
+  // 优点：
+  // 1. 相比于原型链，盗用构造器函数的优点就时可以在子类构造器中向父类构造器函数传参
+  // 2. 引用类型不可共享
+
+  // 问题：构造函数模式自定义问题，必须在构造函数中定义方法，因此函数不能重用。且子类不能访问父类原型上定义的方法，因为所有类型只能使用构造函数模式。
+</script>

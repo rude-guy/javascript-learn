@@ -1,0 +1,30 @@
+<script>
+  function SuperType() {
+    this.property = true;
+    this.colors = [1, 2, 3];
+  }
+  SuperType.prototype.getSuperValue = function () {
+    return this.property;
+  };
+
+  function Subtype() {
+    this.subProperty = false;
+  }
+
+  Subtype.prototype = new SuperType();
+  Subtype.prototype.getSubValue = function () {
+    return this.subProperty;
+  };
+  let instance = new Subtype();
+  instance.colors.push(5);
+  let instance2 = new Subtype();
+  console.log(instance.colors); // [1, 2, 3, 5]
+  console.log(instance2.colors); // [1, 2, 3, 5]
+  // 优点：共享原型链方法
+
+  // 问题：
+  // 1. 原型链中包含引用值类型会在所有实例间共享。
+  // 2. 子类型在实例化时不能给父类型的构造函数传参。
+
+  // 我们无法不影响所有对象实例的情况下把参数传进父类的构造器，再加上之前提到的原型链中包含引用值的问题，就导致原型链基本不会被单独使用
+</script>
