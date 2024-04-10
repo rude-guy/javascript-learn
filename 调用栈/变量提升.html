@@ -1,0 +1,38 @@
+<script>
+  console.log(fun); // error
+
+  console.log(person); // 不执行
+</script>
+
+<script>
+  console.log(person); // undefined
+
+  console.log(fun); // function
+
+  var person = 'Eric';
+
+  console.log(person); //  'Eric'
+
+  function fun() {
+    console.log(person); // undefined
+    var person = 'Tom';
+    console.log(person); // 'tom'
+  }
+
+  fun();
+
+  console.log(person); // 'Eric'
+</script>
+
+<script>
+  function foo1() {
+    function foo2() {
+      function foo3() {
+        innerVar = '123';
+      }
+      foo3();
+    }
+    foo2();
+  }
+  foo1();
+</script>
